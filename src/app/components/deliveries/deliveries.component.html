@@ -1,0 +1,25 @@
+<p>
+    deliveries works!
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <ng-container *ngIf="drones != undefined">
+            <h2>Drones: {{drones.length}}</h2>
+            <app-drones *ngFor="let drone of drones" [drone]="drone">
+
+            </app-drones>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <ng-container *ngIf="packages != undefined">
+            <h2>Pakcages: {{packages.length}}</h2>
+            <app-packages *ngFor="let package of packages" [package]="package">
+
+            </app-packages>
+        </ng-container>
+
+    </div>
+    <div class="col-md-4">
+        <app-assignments></app-assignments>
+    </div>
+</div>
