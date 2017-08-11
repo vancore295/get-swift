@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit {
+   depo = {
+    latitude: -37.816664,
+    longitude: 144.963848
+  };
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-}
+  }

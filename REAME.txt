@@ -1,0 +1,7 @@
+To run this you will need need to have nodejs installed, then the angular client.
+Once those are installed end these command into the console
+1. run npm install
+2. run ng build
+3. run npm start
+
+then open localhost:5000
