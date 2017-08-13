@@ -151,7 +151,9 @@ export class DeliveriesComponent implements OnInit {
   // remove assigned drones from base drones array
   removeAssignedDrone(assignedDrone: Drone, drones: Drone[]): Drone[] {
     const index = drones.findIndex( drone => drone.droneId === assignedDrone.droneId);
-    drones.splice(index, 1);
+    if (index > -1) {
+      drones.splice(index, 1);
+    }
 
     return drones;
   }
