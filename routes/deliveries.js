@@ -24,7 +24,7 @@ router.get('/packages', function(req, res, next) {
             // console.log(data[0]);
 
             // console.log("Packages: ", data);
-            console.log("Got pakcages");
+            console.log("Got packages");
             res.send(data);
         });
 

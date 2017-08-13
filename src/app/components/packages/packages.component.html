@@ -1,17 +1,19 @@
-<div class="col-md-6">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Package Id: {{package.packageId}}</div>
-        <div class="panel-body">
-            <h4>Deadline: <small>{{package.deadline | date:'yyyy-MM-dd HH:mm:ss Z' }}</small></h4>
-            <h4>Destination: </h4>
-            <ul>
-                <li>
-                    <h5>Latitude: {{package.destination.latitude}}</h5>
-                </li>
-                <li>
-                    <h5>Longitude: {{package.destination.longitude}}</h5>
-                </li>
-            </ul>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Package Id: {{package.packageId}}</div>
+            <div class="panel-body">
+                <h4>Deadline: <small>{{package.deadline | date:'yyyy-MM-dd HH:mm:ss Z' }}</small></h4>
+                <h4>Destination: </h4>
+                <ul>
+                    <li>
+                        <h5>Latitude: </h5> {{package.destination.latitude}}
+                    </li>
+                    <li>
+                        <h5>Longitude: </h5>{{package.destination.longitude}}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

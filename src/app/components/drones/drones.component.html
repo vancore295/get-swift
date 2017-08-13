@@ -1,16 +1,24 @@
-<div class="col-md-6">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Drone Id: {{drone.droneId}}</div>
-        <div class="panel-body">
-            <h4>Location:</h4>
-            <ul>
-                <li>
-                    <h5>Latitude: {{drone.location.latitude}}</h5>
-                </li>
-                <li>
-                    <h5>Longitude: {{drone.location.longitude}}</h5>
-                </li>
-            </ul>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Drone Id: {{drone.droneId}}</div>
+            <div class="panel-body">
+                <h4>Location:</h4>
+                <ul>
+                    <li>
+                        <h5>Latitude: {{drone.location.latitude}}</h5>
+                    </li>
+                    <li>
+                        <h5>Longitude: {{drone.location.longitude}}</h5>
+                    </li>
+                </ul>
+
+                <ng-container *ngIf="drone.packages != undefined">
+                    <app-packages *ngFor="let package of drone.packages" [package]="package">
+
+                    </app-packages>
+                </ng-container>
+            </div>
         </div>
     </div>
 </div>

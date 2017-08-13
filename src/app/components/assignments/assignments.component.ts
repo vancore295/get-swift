@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Marker } from '../../classes/marker';
 
 @Component({
   selector: 'app-assignments',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit {
+  @Input() markers: Marker[];
+
    depo = {
     latitude: -37.816664,
     longitude: 144.963848
