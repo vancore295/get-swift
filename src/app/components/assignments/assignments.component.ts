@@ -9,7 +9,6 @@ import { Assignment } from '../../classes/assignment';
   styleUrls: ['./assignments.component.css']
 })
 export class AssignmentsComponent implements OnInit {
-  @Input() markers: Marker[] = [];
   @Input() assignments: Assignment[] = [];
 
    depo = {
