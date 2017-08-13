@@ -6,7 +6,7 @@ import { TravelInfo } from './travelInfo';
 export class Drone {
     droneId: number;
     location: Location;
-    pacakges: Package[];
+    packages: Package[] = [];
     travelInfo: TravelInfo;
 }
 

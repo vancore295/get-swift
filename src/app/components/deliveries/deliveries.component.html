@@ -3,16 +3,16 @@
 </div>
 <div class="row">
     <div class="col-md-4">
+        <h2>Drones: {{drones.length}}</h2>
         <ng-container *ngIf="drones.length > 0">
-            <h2>Drones: {{drones.length}}</h2>
             <app-drones *ngFor="let drone of drones" [drone]="drone">
 
             </app-drones>
         </ng-container>
     </div>
     <div class="col-md-4">
+        <h2>Packages: {{packages.length}}</h2>
         <ng-container *ngIf="packages.length > 0">
-            <h2>Packages: {{packages.length}}</h2>
             <app-packages *ngFor="let package of packages" [package]="package">
 
             </app-packages>
@@ -20,10 +20,11 @@
 
     </div>
     <div class="col-md-4">
-        <ng-container *ngIf="packages.length > 0 && drones.length > 0">
-            <h2>Assignments: {{assignments.length}}</h2>
-            <button (click)="assignDrones()" type="buttn" class="btn btn-primary">Assign Drones</button>
-            <app-assignments></app-assignments>
+        <h2>Assignments: {{assignments.length}}</h2>
+        <ng-container>
+            <button (click)="assignDrones(drones)" type="buttn" class="btn btn-primary">Assign that have a packages</button>
+            <button (click)="queueUpDrones(drones, packages)" type="buttn" class="btn btn-primary">Queue Up Drones</button>
+            <app-assignments [assignments]="assignments"></app-assignments>
         </ng-container>
     </div>
 </div>

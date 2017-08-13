@@ -33,14 +33,10 @@ export class DeliveriesComponent implements OnInit {
   packages: Package[] = [];
   assignments: Assignment[] = [];
 
-  dronesInRange: Drone[];
-
 
   constructor(private deliveriesservice: DeliveriesService) {
     this.getDrones();
     this.getPackages();
-
-
   }
 
   ngOnInit() {
@@ -53,23 +49,22 @@ export class DeliveriesComponent implements OnInit {
     this.deliveriesservice.getPackages().then(packages => this.packages = packages);
   }
 
-  assignDrones(): void {
+  assignDrones(drones: Drone[]): void {
     // scan list of drones that have packages already and move them to the assignments array
-    this.assignDronesWithPackages(this.drones);
-
-    // Get travel times for each drone back to the depo
-    this.getTravelTimes(this.drones);
-
-    // sort drones by travel time
-    this.sortDronesByTravelTime(this.drones);
-
-    // give sorted drones a package
-    this.drones = this.giveDronePackage(this.drones, this.packages);
-
-    // assign drones that now have packages
-    this.assignDronesWithPackages(this.drones);
+    this.drones = this.assignDronesWithPackages(drones);
 
     console.log(this.assignments);
+  }
+
+  queueUpDrones(drones: Drone[], packages: Package[]): void {
+    // Get travel times for each drone back to the depo
+    this.getTravelTimes(drones);
+
+    // sort drones by travel time
+    this.sortDronesByTravelTime(drones);
+
+    // give sorted drones a package
+    drones = this.giveDronePackage(drones, packages);
   }
 
   // calculate distance to the depo by using the haversine formula
@@ -91,26 +86,28 @@ export class DeliveriesComponent implements OnInit {
   // assign drones
   assignDronesWithPackages(drones: Drone[]): Drone[] {
     for (let i = 0; i < drones.length; i++) {
-      if ( drones[i].pacakges !== undefined) {
+      if ( drones[i].packages.length > 0) {
         // take unassigned drone and add it to the assignements array
         this.assignments.push(this.createAssignment(drones[i]));
 
         // add drone to assigned drones
         this.assignedDrones.push(drones[i]);
-
-        // remove drone from main drones array
-        this.removeAssignedDrone(drones[i]);
       }
+    }
+
+    // remove drone from main drones array
+    for (let i = 0; i < this.assignedDrones.length; i++) {
+      drones = this.removeAssignedDrone(this.assignedDrones[i], drones);
     }
 
     return drones;
   }
 
   // give drones with out packages a package and remove it from the packages array
-  giveDronePackage(drones: Drone[], pacakges: Package[]): Drone[] {
+  giveDronePackage(drones: Drone[], packages: Package[]): Drone[] {
     for (let i = 0; i < drones.length; i++) {
-      drones[i].pacakges = [pacakges[0]];
-      this.removeAssignedPackage(pacakges[0]);
+      drones[i].packages = [packages[0]];
+      this.removeAssignedPackage(packages[0]);
     }
 
     return drones;
@@ -143,20 +140,20 @@ export class DeliveriesComponent implements OnInit {
   createAssignment(loadedDrone: Drone): Assignment {
     let newAssignment: Assignment;
 
-    for (let i = 0; i < loadedDrone.pacakges.length; i++) {
-        newAssignment = {
-        droneId: loadedDrone.droneId,
-        packageId: loadedDrone.pacakges[0].packageId
-      };
-    }
+    newAssignment = {
+      droneId: loadedDrone.droneId,
+      packageId: loadedDrone.packages[0].packageId
+    };
 
     return newAssignment;
   }
 
   // remove assigned drones from base drones array
-  removeAssignedDrone(assignedDrone: Drone): void {
-    const index = this.drones.findIndex( drone => drone.droneId === assignedDrone.droneId);
-    this.drones.splice(index, 1);
+  removeAssignedDrone(assignedDrone: Drone, drones: Drone[]): Drone[] {
+    const index = drones.findIndex( drone => drone.droneId === assignedDrone.droneId);
+    drones.splice(index, 1);
+
+    return drones;
   }
 
   // remove assigned package form package array

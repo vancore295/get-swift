@@ -1,6 +1,18 @@
-<p>
-    assignments works!
-</p>
-<agm-map [latitude]="depo.latitude" [longitude]="depo.longitude">
-    <agm-marker [latitude]="depo.latitude" [longitude]="depo.longitude"></agm-marker>
-</agm-map>
+<div class="row">
+    <agm-map [latitude]="depo.latitude" [longitude]="depo.longitude">
+        <agm-marker [latitude]="depo.latitude" [longitude]="depo.longitude"></agm-marker>
+    </agm-map>
+</div>
+{{ assignments }}
+<ng-container *ngFor="let assignment of assignments">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">Assignment</div>
+                <div class="panel-body">
+                    {{ assignment.droneId }} {{ assignemnt.packageId }}
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
