@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <ng-container *ngIF="package != undefined">
+            <ng-container *ngIf="package != undefined">
                 <div class="panel-heading">Package Id: {{package.packageId}}</div>
                 <div class="panel-body">
                     <h4>Deadline: <small>{{package.deadline | date:'yyyy-MM-dd HH:mm:ss Z' }}</small></h4>
