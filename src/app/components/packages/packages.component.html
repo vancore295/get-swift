@@ -1,19 +1,23 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-info">
-            <div class="panel-heading">Package Id: {{package.packageId}}</div>
-            <div class="panel-body">
-                <h4>Deadline: <small>{{package.deadline | date:'yyyy-MM-dd HH:mm:ss Z' }}</small></h4>
-                <h4>Destination: </h4>
-                <ul>
-                    <li>
-                        <h5>Latitude: </h5> {{package.destination.latitude}}
-                    </li>
-                    <li>
-                        <h5>Longitude: </h5>{{package.destination.longitude}}
-                    </li>
-                </ul>
-            </div>
+            <ng-container *ngIF="package != undefined">
+                <div class="panel-heading">Package Id: {{package.packageId}}</div>
+                <div class="panel-body">
+                    <h4>Deadline: <small>{{package.deadline | date:'yyyy-MM-dd HH:mm:ss Z' }}</small></h4>
+                    <h4>Destination: </h4>
+                    <ul>
+                        <li>
+                            <h5>Latitude: </h5> {{package.destination.latitude}}
+                        </li>
+                        <li>
+                            <h5>Longitude: </h5>{{package.destination.longitude}}
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+
+
         </div>
     </div>
 </div>
